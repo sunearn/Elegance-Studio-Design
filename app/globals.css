@@ -31,8 +31,10 @@ button, input, textarea { font: inherit; }
   --brand-lockup-width: 190px;
   display: inline-flex;
   width: var(--brand-lockup-width);
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 6px;
 }
 .brand-logo {
   display: block;
@@ -42,7 +44,15 @@ button, input, textarea { font: inherit; }
   object-position: center;
   margin: 0 auto;
 }
-.brand-name { width: 100%; color: var(--ink); font: 600 8px/1 var(--font-sans), Arial, sans-serif; letter-spacing: .08em; text-align: center; text-transform: uppercase; white-space: nowrap; }
+.brand-name {
+  width: 100%;
+  color: var(--ink);
+  font: 600 10px/1 var(--font-sans), Arial, sans-serif;
+  letter-spacing: .14em;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
 .footer .brand-name { color: var(--ivory); }
 .brand small { margin-top: 7px; font: 7px var(--font-sans), Arial, sans-serif; letter-spacing: .39em; }
 .nav-links { display: flex; justify-content: center; gap: clamp(20px, 3vw, 48px); }

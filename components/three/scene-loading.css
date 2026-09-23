@@ -1,0 +1,19 @@
+.scene-loading { display: grid; width: 100%; min-height: 100%; place-items: center; padding: 24px; background: #ded8ce; color: #292823; }
+.scene-loading--charcoal { background: #292a26; color: #f5f2eb; }
+.scene-loading--sand { background: #ded8ce; color: #292823; }
+.scene-loading__card { display: grid; width: min(100%, 310px); justify-items: start; padding: 25px 27px 23px; border: 1px solid rgb(41 40 35 / 14%); background: rgb(248 246 240 / 94%); box-shadow: 0 14px 45px rgb(41 40 35 / 8%); }
+.scene-loading--charcoal .scene-loading__card { border-color: rgb(255 255 255 / 14%); background: rgb(39 40 36 / 95%); }
+.scene-loading__brand { color: #725f49; font: 500 15px/.95 var(--font-display), Georgia, serif; letter-spacing: .18em; }
+.scene-loading__brand small { display: block; margin-top: 6px; font: 6px var(--font-sans), Arial, sans-serif; letter-spacing: .38em; }
+.scene-loading--charcoal .scene-loading__brand { color: #d1b99b; }
+.scene-loading__rule { width: 31px; height: 1px; margin: 20px 0 13px; background: #a78967; }
+.scene-loading__label { color: #5f5b53; font-size: 9px; letter-spacing: .13em; line-height: 1.6; text-transform: uppercase; }
+.scene-loading--charcoal .scene-loading__label { color: #dfd9cc; }
+.scene-loading__track { position: relative; width: 100%; height: 2px; overflow: hidden; margin-top: 17px; background: #d8d1c5; }
+.scene-loading__track > span { display: block; height: 100%; background: #9a7958; transition: width .25s ease; }
+.scene-loading__track > span.is-indeterminate { width: 34%; animation: scene-loading-sweep 1.6s cubic-bezier(.4,0,.2,1) infinite; }
+.scene-loading--charcoal .scene-loading__track { background: #5b5850; }
+.scene-loading--charcoal .scene-loading__track > span { background: #cfb18c; }
+.scene-loading.is-ready .scene-loading__card { width: min(100%, 280px); padding-block: 22px; }
+@keyframes scene-loading-sweep { from { transform: translateX(-110%); } to { transform: translateX(300%); } }
+@media (prefers-reduced-motion: reduce) { .scene-loading__track > span { transition: none; }.scene-loading__track > span.is-indeterminate { width: 55%; animation: none; } }

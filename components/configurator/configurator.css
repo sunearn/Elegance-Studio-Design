@@ -1,0 +1,61 @@
+.room-configurator { padding: clamp(76px, 9vw, 128px) max(24px, calc((100vw - 1360px) / 2)); background: #282925; color: #f5f2eb; }
+.configurator__intro { display: flex; justify-content: space-between; align-items: end; gap: 40px; margin-bottom: 38px; }
+.configurator__intro h2 { margin: 14px 0 0; font-size: clamp(44px, 6vw, 78px); line-height: .95; }
+.configurator__intro > p { max-width: 360px; margin: 0 0 4px; color: #c0beb6; font-size: 12px; line-height: 1.8; }
+.configurator__layout { display: grid; grid-template-columns: minmax(0, 1fr) 390px; min-height: 690px; border: 1px solid #ffffff24; background: #dcd7ce; }
+.configurator__preview { position: relative; display: flex; min-width: 0; flex-direction: column; justify-content: space-between; overflow: hidden; }
+.configurator__preview .interior-scene__stage { min-height: 0; flex: 1; overflow: visible; background: transparent; box-shadow: none; }
+.configurator__preview .interior-scene__canvas { height: 100%; min-height: 580px; }
+.configurator__preview-label, .configurator__preview-foot { position: absolute; z-index: 2; right: 24px; left: 24px; display: flex; justify-content: space-between; color: #5d594f; font-size: 8px; letter-spacing: .15em; pointer-events: none; }
+.configurator__preview-label { top: 22px; }
+.configurator__preview-foot { bottom: 20px; }
+.configurator__loading { display: grid; min-height: 690px; place-items: center; background: #ded8ce; color: #665f53; font-size: 9px; letter-spacing: .16em; text-transform: uppercase; }
+.config-panel { display: flex; flex-direction: column; padding: 27px 28px 22px; border-left: 1px solid #ffffff24; background: #30312d; color: #f5f2eb; }
+.config-panel__heading { display: flex; align-items: center; justify-content: space-between; padding-bottom: 21px; border-bottom: 1px solid #ffffff25; }
+.config-panel__step { color: #bba384; font-size: 9px; letter-spacing: .12em; }
+.config-panel__status { display: inline-flex; align-items: center; gap: 7px; color: #bcbab1; font-size: 7px; letter-spacing: .12em; }
+.config-panel__status i { width: 5px; height: 5px; border-radius: 50%; background: #bba384; box-shadow: 0 0 0 3px #bba38425; }
+.config-group { padding: 20px 0 17px; border-bottom: 1px solid #ffffff22; }
+.config-group__title { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+.config-group__title > span { color: #bba384; font-size: 8px; letter-spacing: .1em; }
+.config-group__title h3 { margin: 0; font: 400 20px/1 var(--font-display), Georgia, serif; }
+.config-choice-group { min-width: 0; padding: 0; border: 0; margin: 0 0 14px; }
+.config-choice-group:last-child { margin-bottom: 0; }
+.config-choice-group legend { padding: 0; margin-bottom: 8px; color: #a8a69e; font-size: 7px; letter-spacing: .14em; }
+.config-swatches { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; }
+.config-swatch { display: flex; min-width: 0; min-height: 44px; flex-direction: column; gap: 5px; align-items: stretch; padding: 0; border: 0; background: transparent; color: #cbc9c1; text-align: left; font-size: 8px; cursor: pointer; }
+.config-swatch i { position: relative; display: block; height: 27px; border: 1px solid #ffffff28; transition: border-color .2s, transform .2s; }
+.config-swatch:hover i { transform: translateY(-2px); }
+.config-swatch.is-selected i { border-color: #cbb18d; box-shadow: inset 0 0 0 1px #30312d; outline: 1px solid #cbb18d; }
+.config-swatch.is-selected span { color: #e4d3bb; }
+.config-pills { display: grid; grid-template-columns: repeat(4,1fr); gap: 5px; }
+.config-pill { display: inline-flex; min-height: 38px; align-items: center; justify-content: center; gap: 6px; padding: 0 6px; border: 1px solid #ffffff2b; background: transparent; color: #c5c3bb; font-size: 8px; cursor: pointer; transition: border-color .2s, color .2s, background .2s; }
+.config-pill:hover { border-color: #cbb18d; color: #f5f2eb; }
+.config-pill.is-selected { border-color: #cbb18d; background: #cbb18d14; color: #e7d6be; }
+.config-pills--lighting { grid-template-columns: repeat(3,1fr); }
+.lighting-dot { width: 7px; height: 7px; border-radius: 50%; background: #e4b679; }
+.lighting-dot--neutral { background: #eee7d8; }.lighting-dot--cool { background: #a9c6e1; }
+.config-summary { padding: 18px 0 15px; }
+.config-summary__eyebrow { display: block; margin-bottom: 9px; color: #c8ad8b; font-size: 8px; letter-spacing: .18em; }
+.config-summary__row { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; color: #aaa89f; font-size: 8px; }
+.config-summary__row strong { color: #e2dfd6; font-size: 8px; font-weight: 400; text-align: right; }
+.config-generate { display: flex; min-height: 45px; align-items: center; justify-content: space-between; padding: 0 15px; border: 1px solid #b89b78; background: #b89b78; color: #272722; font-size: 8px; letter-spacing: .14em; cursor: pointer; transition: background .2s, color .2s; }
+.config-generate:hover { background: transparent; color: #e6d2b7; }
+.config-generate span:last-child { font-size: 15px; }
+.config-panel__note { margin: 9px 0 0; color: #96948b; font-size: 8px; text-align: center; }
+@media (pointer: coarse) { .config-pill { min-height: 44px; } }
+@media (max-width: 1050px) { .configurator__layout { grid-template-columns: minmax(0,1fr) 340px; }.config-panel { padding-inline: 22px; } }
+@media (max-width: 850px) {
+  .room-configurator { padding: 78px 20px; }
+  .configurator__intro { display: block; margin-bottom: 28px; }
+  .configurator__intro h2 { font-size: clamp(42px, 10vw, 64px); }
+  .configurator__intro > p { margin-top: 14px; }
+  .configurator__layout { grid-template-columns: 1fr; }
+  .configurator__preview { min-height: 430px; }
+  .configurator__loading { min-height: 430px; }
+  .configurator__preview .interior-scene__stage { min-height: 430px; }
+  .configurator__preview .interior-scene__canvas { min-height: 430px; }
+  .config-panel { padding: 20px; border-top: 1px solid #ffffff24; border-left: 0; }
+  .config-group { padding-block: 18px; }
+}
+@media (max-width: 390px) { .config-panel { padding-inline: 15px; }.configurator__preview-label,.configurator__preview-foot { right: 13px; left: 13px; font-size: 7px; }.config-pill { font-size: 7px; } }

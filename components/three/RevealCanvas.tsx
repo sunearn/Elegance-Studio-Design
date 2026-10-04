@@ -34,7 +34,7 @@ function shouldRenderRevealPart(name: string) {
 
 type LightRefs = { ambient: RefObject<HemisphereLight | null>; key: RefObject<DirectionalLight | null>; pendant: RefObject<PointLight | null> };
 
-function RevealRoom({ onReadyChange, lights }: { onReadyChange: (ready: boolean) => void; lights: LightRefs }) {
+function RevealRoom({ onReadyChange, ambientRef, keyRef, pendantRef }: { onReadyChange: (ready: boolean) => void; ambientRef: LightRefs['ambient']; keyRef: LightRefs['key']; pendantRef: LightRefs['pendant'] }) {
   const { scene } = useGLTF('/models/luxury-living-room.glb');
   const room = useMemo(() => {
     const clone = scene.clone(true);
@@ -63,9 +63,9 @@ function RevealRoom({ onReadyChange, lights }: { onReadyChange: (ready: boolean)
     const furniture = room.children.filter((part) => FURNITURE_PARTS.includes(part.name));
     const wallScale = walls.map((part) => part.userData.revealScaleY as number);
     const furnitureScale = furniture.map((part) => part.userData.revealScale as { x: number; y: number; z: number });
-    const ambient = lights.ambient.current;
-    const key = lights.key.current;
-    const pendant = lights.pendant.current;
+    const ambient = ambientRef.current;
+    const key = keyRef.current;
+    const pendant = pendantRef.current;
     const phases = gsap.utils.toArray<HTMLElement>('.floorplan-reveal__phase');
 
     gsap.set(sceneLayer, { autoAlpha: 1 });
@@ -81,7 +81,7 @@ function RevealRoom({ onReadyChange, lights }: { onReadyChange: (ready: boolean)
     camera.lookAt(0, 1.1, 0);
     onReadyChange(true);
     invalidate();
-  }, [camera, invalidate, onReadyChange, room, lights.ambient, lights.key, lights.pendant]);
+  }, [camera, invalidate, onReadyChange, room, ambientRef, keyRef, pendantRef]);
 
   return <group position={[-2, 0, 0]}><primitive object={room} dispose={null} /><PottedOliveTree /></group>;
 }
@@ -118,7 +118,7 @@ export function RevealCanvas({ onReadyChange, activeId, onSelect }: { onReadyCha
       <pointLight ref={pendantRef} position={[0.3, 2.8, 0.95]} intensity={0} distance={5} decay={2} color="#ffd49a" />
       <Suspense fallback={null}>
         <Environment files="/models/studio_small_03_1k.hdr" environmentIntensity={0.3} />
-        <RevealRoom onReadyChange={updateReady} lights={{ ambient: ambientRef, key: keyRef, pendant: pendantRef }} />
+        <RevealRoom onReadyChange={updateReady} ambientRef={ambientRef} keyRef={keyRef} pendantRef={pendantRef} />
         <SceneReadySignal onReady={markSceneLoaded} />
         {ready && <Hotspots activeId={activeId} onSelect={onSelect} />}
       </Suspense>

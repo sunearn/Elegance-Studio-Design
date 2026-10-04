@@ -20,4 +20,7 @@
   .floorplan-reveal__step { width: 24px; height: 24px; font-size: 7px; }
   .floorplan-reveal__scroll-note { margin-top: 12px; letter-spacing: .12em; }
 }
-
+@media (max-width:760px) {
+  .floorplan-reveal, .floorplan-reveal--single, .floorplan-reveal__stage { min-height: 0; }
+  .floorplan-reveal__stage { padding-bottom: 24px; }
+}

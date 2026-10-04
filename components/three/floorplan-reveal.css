@@ -19,15 +19,21 @@
 .floorplan-reveal__drag-note { left: auto; right: max(24px,calc((100vw - 1360px)/2)); color: #f4f0e8; }
 .floorplan-reveal__loading { position: absolute; z-index: 4; inset: 0; display: grid; place-items: center; background: #e8e4dc; color: #6c665b; font-size: 8px; letter-spacing: .16em; text-transform: uppercase; }
 @media (max-width:760px) {
- .floorplan-reveal__stage { min-height: 550px; }
- .floorplan-reveal__intro { top: 27px; left: 20px; }
- .floorplan-reveal__intro h2 { font-size: clamp(38px,10vw,55px); }
- .floorplan-reveal__plan-layer { padding: 125px 5vw 78px; }
- .floorplan-reveal__drawing { width: 94vw; max-height: 53svh; }
- .floorplan-reveal__phase-list { right: 20px; bottom: 53px; width: calc(100% - 40px); }
+ .floorplan-reveal__stage { min-height: 520px; height: 72svh; }
+ .floorplan-reveal__intro { top: 27px; left: 20px; right: 20px; max-width: 68vw; }
+ .floorplan-reveal__intro h2 { max-width: 230px; font-size: clamp(34px,9vw,52px); line-height: .9; }
+ .floorplan-reveal__plan-layer { padding: 135px 5vw 90px; }
+ .floorplan-reveal__drawing { width: min(94vw, 520px); max-height: 42svh; }
+ .floorplan-reveal__phase-list { right: 20px; bottom: 58px; width: calc(100% - 40px); height: auto; }
  .floorplan-reveal__phase { font-size: 6px; }
- .floorplan-reveal__scroll-note,.floorplan-reveal__drag-note { bottom: 22px; left: 20px; font-size: 6px; }
- .floorplan-reveal__drag-note { left: auto; right: 20px; }
+ .floorplan-reveal__scroll-note { left: 20px; bottom: 20px; }
+ .floorplan-reveal__drag-note { right: 20px; bottom: 20px; }
+}
+@media (max-width: 420px) {
+  .floorplan-reveal__intro { max-width: 72vw; }
+  .floorplan-reveal__intro h2 { max-width: 180px; }
+  .floorplan-reveal__plan-layer { padding-top: 150px; }
+  .floorplan-reveal__scroll-note,.floorplan-reveal__drag-note { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .floorplan-reveal__stage { height: min(100svh,780px); } }
 

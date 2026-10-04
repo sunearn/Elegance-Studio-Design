@@ -47,15 +47,24 @@
 @media (max-width: 1050px) { .configurator__layout { grid-template-columns: minmax(0,1fr) 340px; }.config-panel { padding-inline: 22px; } }
 @media (max-width: 850px) {
   .room-configurator { padding: 78px 20px; }
-  .configurator__intro { display: block; margin-bottom: 28px; }
-  .configurator__intro h2 { font-size: clamp(42px, 10vw, 64px); }
-  .configurator__intro > p { margin-top: 14px; }
-  .configurator__layout { grid-template-columns: 1fr; }
-  .configurator__preview { min-height: 430px; }
-  .configurator__loading { min-height: 430px; }
-  .configurator__preview .interior-scene__stage { min-height: 430px; }
-  .configurator__preview .interior-scene__canvas { min-height: 430px; }
+  .configurator__intro { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-bottom: 28px; }
+  .configurator__intro h2 { max-width: 260px; font-size: clamp(42px, 10vw, 64px); line-height: .9; }
+  .configurator__intro > p { max-width: 310px; margin-top: 0; }
+  .configurator__layout { grid-template-columns: 1fr; min-height: 0; }
+  .configurator__preview { min-height: 390px; }
+  .configurator__loading { min-height: 390px; }
+  .configurator__preview .interior-scene__stage { min-height: 390px; }
+  .configurator__preview .interior-scene__canvas { min-height: 390px; }
   .config-panel { padding: 20px; border-top: 1px solid #ffffff24; border-left: 0; }
+  .config-panel__heading { flex-wrap: wrap; gap: 8px; }
   .config-group { padding-block: 18px; }
+  .config-swatches { gap: 7px; }
+  .config-pills { gap: 5px; }
 }
-@media (max-width: 390px) { .config-panel { padding-inline: 15px; }.configurator__preview-label,.configurator__preview-foot { right: 13px; left: 13px; font-size: 7px; }.config-pill { font-size: 7px; } }
+@media (max-width: 390px) {
+  .room-configurator { padding-inline: 14px; }
+  .config-panel { padding-inline: 15px; }
+  .configurator__preview-label,.configurator__preview-foot { right: 13px; left: 13px; font-size: 7px; }
+  .config-pill { font-size: 7px; }
+  .configurator__intro h2 { max-width: 210px; }
+}

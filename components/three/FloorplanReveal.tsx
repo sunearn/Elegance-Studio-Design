@@ -34,6 +34,14 @@ function FloorPlanDrawing() {
   </svg>;
 }
 
+const REVEAL_PHASES = [
+  '01 / PLAN — A CLEAR STARTING POINT',
+  '02 / VOLUME — WALLS TAKE SHAPE',
+  '03 / LAYER — FURNITURE FINDS ITS PLACE',
+  '04 / ATMOSPHERE — LIGHT, THEN LIFE',
+  '05 / EXPERIENCE — ENTER THE ROOM',
+] as const;
+
 export function FloorplanReveal() {
   const [isNearViewport, setIsNearViewport] = useState(false);
   const [activeId, setActiveId] = useState<InteriorHotspotId | null>(null);
@@ -56,11 +64,16 @@ export function FloorplanReveal() {
       <div id="floorplan-plan-layer" className="floorplan-reveal__plan-layer"><FloorPlanDrawing /></div>
       {isNearViewport && <ClientReveal onReadyChange={onReadyChange} activeId={activeId} onSelect={(id) => setActiveId((current) => current === id ? null : id)} />}
       <div className="floorplan-reveal__phase-list" aria-live="polite">
-        <span className="floorplan-reveal__phase floorplan-reveal__phase--1">01&nbsp; / &nbsp;PLAN — A CLEAR STARTING POINT</span>
-        <span className="floorplan-reveal__phase">02&nbsp; / &nbsp;VOLUME — WALLS TAKE SHAPE</span>
-        <span className="floorplan-reveal__phase">03&nbsp; / &nbsp;LAYER — FURNITURE FINDS ITS PLACE</span>
-        <span className="floorplan-reveal__phase">04&nbsp; / &nbsp;ATMOSPHERE — LIGHT, THEN LIFE</span>
-        <span className="floorplan-reveal__phase">05&nbsp; / &nbsp;EXPERIENCE — ENTER THE ROOM</span>
+        {REVEAL_PHASES.map((phase, index) => (
+          <span key={phase} className={`floorplan-reveal__phase ${index === 0 ? 'floorplan-reveal__phase--1' : ''}`}>{phase}</span>
+        ))}
+      </div>
+      <div className="floorplan-reveal__step-nav" aria-label="Reveal phases">
+        {REVEAL_PHASES.map((phase, index) => (
+          <span key={phase} className={`floorplan-reveal__step ${index === 0 ? 'is-active' : ''}`}>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+          </span>
+        ))}
       </div>
       <div className="floorplan-reveal__scroll-note">SCROLL TO BUILD THE SPACE <span>↓</span></div>
       {isReady && <span className="floorplan-reveal__drag-note">DRAG TO EXPLORE</span>}

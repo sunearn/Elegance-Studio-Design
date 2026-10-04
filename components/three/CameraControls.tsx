@@ -43,5 +43,5 @@ export function CameraControls({ scrollTarget }: { scrollTarget?: string }) {
     return () => media.revert();
   }, [camera, scrollTarget]);
 
-  return <OrbitControls makeDefault target={[0, 1.1, 0]} enableDamping dampingFactor={0.075} enablePan={false} enableRotate enableZoom minDistance={5.7} maxDistance={13} minPolarAngle={0.22} maxPolarAngle={Math.PI * 0.49} rotateSpeed={0.55} zoomSpeed={0.65} />;
+  return <OrbitControls makeDefault target={[0, 1.4, 0]} enableDamping dampingFactor={0.075} enablePan={false} enableRotate enableZoom minDistance={5.7} maxDistance={13} minPolarAngle={0.22} maxPolarAngle={Math.PI * 0.49} rotateSpeed={0.55} zoomSpeed={0.65} />;
 }

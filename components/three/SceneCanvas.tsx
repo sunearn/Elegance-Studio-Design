@@ -43,7 +43,7 @@ export function SceneCanvas({ configuration = INITIAL_CONFIGURATION, showHotspot
   const style = styleSettings[configuration.style];
 
   return <div className="interior-scene__stage">
-    <Canvas className="interior-scene__canvas" shadows={!lowPower} dpr={lowPower ? 1 : [1, 1.35]} camera={{ position: [6.5, 4.1, 7.5], fov: 39, near: 0.1, far: 40 }} gl={{ antialias: !lowPower, alpha: false, powerPreference: 'low-power' }} aria-label="Interactive three-dimensional living room">
+    <Canvas className="interior-scene__canvas" shadows={!lowPower} dpr={lowPower ? 1 : [1, 1.35]} camera={{ position: [7.3, 4.5, 8.4], fov: 39, near: 0.1, far: 40 }} gl={{ antialias: !lowPower, alpha: false, powerPreference: 'low-power' }} aria-label="Interactive three-dimensional living room">
       <color attach="background" args={[style.background]} />
       <ambientLight intensity={1.05} color={light.ambient} />
       <hemisphereLight args={[light.ambient, '#625a4d', 1.1]} />

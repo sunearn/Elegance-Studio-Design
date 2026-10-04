@@ -1,15 +1,6 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-import { useCallback, useEffect, useState } from 'react';
-import type { InteriorHotspotId } from './Hotspots';
-import { SceneLoading } from './SceneLoading';
 import './floorplan-reveal.css';
-
-const ClientReveal = dynamic(() => import('./RevealCanvas').then((module) => module.RevealCanvas), {
-  ssr: false,
-  loading: () => <SceneLoading label="Preparing the spatial study" className="floorplan-reveal__loading" />,
-});
 
 function FloorPlanDrawing() {
   return <svg className="floorplan-reveal__drawing" viewBox="0 0 760 470" role="img" aria-labelledby="reveal-plan-title reveal-plan-description">
@@ -34,49 +25,17 @@ function FloorPlanDrawing() {
   </svg>;
 }
 
-const REVEAL_PHASES = [
-  '01 / PLAN — A CLEAR STARTING POINT',
-  '02 / VOLUME — WALLS TAKE SHAPE',
-  '03 / LAYER — FURNITURE FINDS ITS PLACE',
-  '04 / ATMOSPHERE — LIGHT, THEN LIFE',
-  '05 / EXPERIENCE — ENTER THE ROOM',
-] as const;
-
 export function FloorplanReveal() {
-  const [isNearViewport, setIsNearViewport] = useState(false);
-  const [activeId, setActiveId] = useState<InteriorHotspotId | null>(null);
-  const [isReady, setIsReady] = useState(false);
-  const onReadyChange = useCallback((ready: boolean) => setIsReady(ready), []);
-
-  useEffect(() => {
-    const section = document.getElementById('floorplan-reveal');
-    if (!section || isNearViewport) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) { setIsNearViewport(true); observer.disconnect(); }
-    }, { rootMargin: '100px 0px' });
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, [isNearViewport]);
-
-  return <section className="floorplan-reveal" id="floorplan-reveal" aria-labelledby="floorplan-reveal-title">
+  return <section className="floorplan-reveal floorplan-reveal--single" id="floorplan-reveal" aria-labelledby="floorplan-reveal-title">
     <div className="floorplan-reveal__stage">
-      <div className="floorplan-reveal__intro"><span className="eyebrow">From drawing to dwelling</span><h2 className="display" id="floorplan-reveal-title">A plan becomes<br />a place.</h2></div>
-      <div id="floorplan-plan-layer" className="floorplan-reveal__plan-layer"><FloorPlanDrawing /></div>
-      {isNearViewport && <ClientReveal onReadyChange={onReadyChange} activeId={activeId} onSelect={(id) => setActiveId((current) => current === id ? null : id)} />}
-      <div className="floorplan-reveal__phase-list" aria-live="polite">
-        {REVEAL_PHASES.map((phase, index) => (
-          <span key={phase} className={`floorplan-reveal__phase ${index === 0 ? 'floorplan-reveal__phase--1' : ''}`}>{phase}</span>
-        ))}
+      <div className="floorplan-reveal__intro">
+        <span className="eyebrow">From drawing to dwelling</span>
+        <h2 className="display" id="floorplan-reveal-title">A plan becomes<br />a place.</h2>
       </div>
-      <div className="floorplan-reveal__step-nav" aria-label="Reveal phases">
-        {REVEAL_PHASES.map((phase, index) => (
-          <span key={phase} className={`floorplan-reveal__step ${index === 0 ? 'is-active' : ''}`}>
-            <span>{String(index + 1).padStart(2, '0')}</span>
-          </span>
-        ))}
+
+      <div id="floorplan-plan-layer" className="floorplan-reveal__plan-layer">
+        <FloorPlanDrawing />
       </div>
-      <div className="floorplan-reveal__scroll-note">SCROLL TO BUILD THE SPACE <span>↓</span></div>
-      {isReady && <span className="floorplan-reveal__drag-note">DRAG TO EXPLORE</span>}
     </div>
   </section>;
 }

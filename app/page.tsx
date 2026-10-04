@@ -16,5 +16,5 @@ import { pageMetadata } from '@/lib/seo';
 export const metadata: Metadata = pageMetadata({ title: 'Elegance Design Studio — Interior Design in Pune', description: 'Elegance Design Studio creates considered homes in Pune, bringing architecture, function and feeling into balance.', path: '/' });
 
 export default function HomePage() {
-  return <><main><Hero /><FloorplanReveal /><RoomConfigurator /><Projects limit={3} /><Services /><StyleExplorer /><MaterialLibrary /><DesignProcess /><AboutStudio /><Testimonials /><Contact compact /></main><StudioStructuredData /></>;
+  return <><main><Hero /><FloorplanReveal /><RoomConfigurator /><Projects /><Services /><StyleExplorer /><MaterialLibrary /><DesignProcess /><AboutStudio /><Testimonials /><Contact compact /></main><StudioStructuredData /></>;
 }

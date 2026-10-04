@@ -30,7 +30,7 @@ export function SceneCanvas({ configuration = INITIAL_CONFIGURATION, showHotspot
   const [activeId, setActiveId] = useState<InteriorHotspotId | null>(null);
   const [sceneLoaded, setSceneLoaded] = useState(false);
   const markSceneLoaded = useCallback(() => setSceneLoaded(true), []);
-  const [lowPower, setLowPower] = useState(() => typeof window !== 'undefined' && window.matchMedia('(max-width: 760px), (pointer: coarse)').matches);
+  const [lowPower, setLowPower] = useState(false);
   useEffect(() => {
     const query = window.matchMedia('(max-width: 760px), (pointer: coarse)');
     const update = () => setLowPower(query.matches);

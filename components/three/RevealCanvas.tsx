@@ -142,7 +142,7 @@ export function RevealCanvas({ onReadyChange, activeId, onSelect }: { onReadyCha
   const [ready, setReady] = useState(false);
   const [sceneLoaded, setSceneLoaded] = useState(false);
   const markSceneLoaded = useCallback(() => setSceneLoaded(true), []);
-  const [lowPower, setLowPower] = useState(() => typeof window !== 'undefined' && window.matchMedia('(max-width: 760px), (pointer: coarse)').matches);
+  const [lowPower, setLowPower] = useState(false);
   const ambientRef = useRef<HemisphereLight>(null);
   const keyRef = useRef<DirectionalLight>(null);
   const pendantRef = useRef<PointLight>(null);
